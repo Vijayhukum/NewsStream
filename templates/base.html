@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}My News Website{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#">News Stream</a>
+
+      <a href="/" class="navbar-brand" style="float: right">Home</a>
+    </nav>
+
+    <div class="container-fluid">
+      <form
+        class="form-inline justify-content-center my-4"
+        action="{% url 'search' %}"
+        method="GET"
+      >
+        <input
+          class="form-control mr-2"
+          type="search"
+          placeholder="Search News"
+          aria-label="Search"
+          name="query"
+          style="width: 50%"
+          required
+        />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+      <div class="row">
+        <div class="sidebar">
+          <h4>Categories</h4>
+          <div class="list-group">
+            <a
+              href="{% url 'category_news' 'world' %}"
+              class="list-group-item {% if current_category == 'world' %}active{% endif %}"
+            >
+              <i class="fas fa-globe-asia"></i> World
+            </a>
+            <a
+              href="{% url 'category_news' 'general' %}"
+              class="list-group-item {% if current_category == 'general' %}active{% endif %}"
+            >
+              <i class="fas fa-globe"></i> General
+            </a>
+            <a
+              href="{% url 'category_news' 'business' %}"
+              class="list-group-item {% if current_category == 'business' %}active{% endif %}"
+            >
+              <i class="fas fa-briefcase"></i> Business
+            </a>
+            <a
+              href="{% url 'category_news' 'technology' %}"
+              class="list-group-item {% if current_category == 'technology' %}active{% endif %}"
+            >
+              <i class="fas fa-laptop"></i> Technology
+            </a>
+            <a
+              href="{% url 'category_news' 'health' %}"
+              class="list-group-item {% if current_category == 'health' %}active{% endif %}"
+            >
+              <i class="fas fa-heartbeat"></i> Health
+            </a>
+            <a
+              href="{% url 'category_news' 'sports' %}"
+              class="list-group-item {% if current_category == 'sports' %}active{% endif %}"
+            >
+              <i class="fas fa-futbol"></i> Sports
+            </a>
+            <a
+              href="{% url 'category_news' 'entertainment' %}"
+              class="list-group-item {% if current_category == 'entertainment' %}active{% endif %}"
+            >
+              <i class="fas fa-film"></i> Entertainment
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-9 offset-md-3">
+          <div class="news-container">
+            <!--  -->
+            {% block content %} {% endblock %}
+            <!--  -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

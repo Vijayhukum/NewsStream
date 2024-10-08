@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+<!--  -->
+{% block title %}Home - My Website{% endblock %}
+<!--  -->
+{% block content %}
+<div class="row">
+  {% for article in articles %}
+  <!--  -->
+  {% if article.title %}
+  <!--  -->
+  <div class="col-md-6">
+    <div class="card news-card">
+      {% if article.urlToImage %}
+
+      <img
+        src="{{ article.urlToImage }}"
+        class="card-img-top"
+        onerror="this.src='https://via.placeholder.com/150';"
+      />
+      {% else %}
+      <!--  -->
+      {% endif %}
+      <div class="card-body">
+        <h5 class="news-title">{{ article.title }}</h5>
+        <!--  -->
+        {% if article.description %}
+        <p class="news-description">{{ article.description }}</p>
+        {% endif %}
+        <!--  -->
+        {% if article.source.name %}
+        <p class="news-source">Source: {{ article.source.name }}</p>
+        {% endif %}
+        <!--  -->
+        {% if article.author %}
+        <p class="news-author">Author: {{ article.author }}</p>
+        {% endif %}
+        <!--  -->
+
+        <p class="news-date">Published on: {{ article.publishedAt}}</p>
+        <a href="{{ article.url }}" class="btn btn-primary" target="_blank"
+          >Read more</a
+        >
+      </div>
+    </div>
+  </div>
+  <!--  -->
+  {% endif %}
+  <!--  -->
+  {% endfor %}
+</div>
+{% endblock %}
