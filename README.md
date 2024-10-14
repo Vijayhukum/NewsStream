@@ -13,8 +13,18 @@ NewsStream is a web application that uses a news API to fetch and display the la
 - **Backend**: Django (Python)
 - **APIs**: News API for fetching news articles
 
-## Getting Started
+## Screenshots
 
+### Homepage:
+![Homepage](images/Screenshot_homepage.png)
+
+### Category View:
+![Category View](images/Screenshot_category.png)
+
+
+
+
+## Getting Started
 ### Prerequisites
 
 - **Python 3.12.2** 
