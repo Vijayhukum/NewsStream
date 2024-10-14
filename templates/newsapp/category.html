@@ -1,8 +1,6 @@
 {% extends 'base.html' %} {% load static %}
 <!--  -->
-{% block title %}Latest News in
-<!--  -->
-{{ current_category|title }}{% endblock %}
+{% block title %}Latest News in {{ current_category|title }}{% endblock %}
 <!--  -->
 {% block content %}
 <h1 class="text-center mb-5">Latest News in {{ current_category|title }}</h1>
@@ -36,5 +34,54 @@
     </div>
   </div>
   {% endfor %}
+
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      {% if articles.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1" aria-label="First">
+          <span aria-hidden="true">&laquo; First</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="?page={{ articles.previous_page_number }}"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true">Previous</span>
+        </a>
+      </li>
+      {% endif %}
+
+      <li class="page-item disabled">
+        <span class="page-link"
+          >Page {{ articles.number }} of {{ articles.paginator.num_pages }}
+          <!--  -->
+        </span>
+      </li>
+
+      {% if articles.has_next %}
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="?page={{ articles.next_page_number }}"
+          aria-label="Next"
+        >
+          <span aria-hidden="true">Next</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link"
+          href="?page={{ articles.paginator.num_pages }}"
+          aria-label="Last"
+        >
+          <span aria-hidden="true">Last &raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
 </div>
 {% endblock %}

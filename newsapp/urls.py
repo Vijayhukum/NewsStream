@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import CategoryNewsView,HomeView,SearchView
+from .views import category_news_view,home_view,search_view
 urlpatterns = [
-    path('category/<str:category>', CategoryNewsView.as_view(),name="category_news"),
-    path('', HomeView.as_view(),name="home"),
-    path('search/', SearchView.as_view(),name="search"),
+    path('category/<str:category>', category_news_view,name="category_news"),
+    path('', home_view,name="home"),
+    path('search/', search_view,name="search"),
    
 ]
